@@ -1,0 +1,73 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anek+Telugu:wght@100..800&display=swap');
+
+.text-lato {
+   font-family: "Lato", sans-serif;
+   font-weight: 100;
+   font-style: normal;
+}
+
+.text-telugu {
+   font-family: "Anek Telugu", sans-serif;
+   font-optical-sizing: auto;
+   font-weight: 800;
+   font-style: normal;
+   font-variation-settings:
+      "wdth" 100;
+}
+
+
+.text-bricolage {
+   font-family: "Bricolage Grotesque", sans-serif;
+   font-optical-sizing: auto;
+   font-weight: 200;
+   font-style: normal;
+   font-variation-settings:
+      "wdth" 100;
+}
+
+.reviews-wrapper {
+   position: relative;
+   display: grid;
+   overflow: visible;
+   padding-left: 1rem;
+   white-space: nowrap;
+}
+
+.reviews-track {
+   grid-area: 1 / 1;
+   display: inline-flex;
+   gap: 0.75rem;
+   will-change: transform;
+   contain: layout paint style;
+   flex-wrap: nowrap;
+   width: max-content;
+   animation: reviews-move-right 10s linear infinite;
+}
+
+.reviews-track--second {
+   transform: translateX(-100%);
+   animation: reviews-move-right-offset 10s linear infinite;
+}
+
+@keyframes reviews-move-right {
+   0% {
+      transform: translateX(0%);
+   }
+
+   100% {
+      transform: translateX(100%);
+   }
+}
+
+@keyframes reviews-move-right-offset {
+   0% {
+      transform: translateX(-100%);
+   }
+
+   100% {
+      transform: translateX(0%);
+   }
+}
