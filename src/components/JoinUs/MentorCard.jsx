@@ -1,9 +1,10 @@
 import React from 'react'
 
-function MentorCard() {
+function MentorCard({ id }) {
     return (
-        <div className='h-full w-full flex flex-col items-center justify-center'>
-            <div className='w-1/2 h-[12%] bg-green-300 flex flex-col p-3 rounded-t-2xl'>
+        <div className={`h-full w-full flex flex-col items-center justify-center absolute mt-1`}
+            style={{ top: `${id * 20}px`, zIndex: 10 - id }}>
+            <div className='w-1/2 h-[15%] bg-green-300 flex flex-col p-3 rounded-t-2xl'>
                 <div>Name</div>
                 <div>Designation</div>
                 <div>Experience</div>

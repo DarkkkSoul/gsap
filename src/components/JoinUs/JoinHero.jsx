@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import MentorCard from './MentorCard'
 import JoinUsForm from './JoinUsForm'
 import { useGSAP } from '@gsap/react'
@@ -7,7 +7,8 @@ import { ScrollTrigger } from 'gsap/all'
 import mentors from '../../arrays/mentor'
 
 export default function JoinHero() {
-    gsap.registerPlugin(ScrollTrigger)
+    gsap.registerPlugin(ScrollTrigger);
+
     useGSAP(() => {
         const tl = gsap.timeline({
             scrollTrigger: {
@@ -27,6 +28,18 @@ export default function JoinHero() {
             }
         });
     });
+
+    const mentorRef = useRef(null);
+
+    useGSAP(() => {
+        gsap.to(mentorRef.current, {
+            scrollTrigger: {
+                trigger: mentorRef.current,
+                pin: true,
+            },
+        });
+    });
+
     return (
         <div className='w-full h-screen flex'>
             <div className='w-3/5 bg-green-500/20 backdrop-blur-md backdrop-saturate-150 border border-white/20 shadow-xl p-10 md:p-12 flex flex-col items-start justify-center gap-6 join-section'>
@@ -38,18 +51,20 @@ export default function JoinHero() {
                     <JoinUsForm />
                 </div>
             </div>
-            <div className='w-2/5 bg-yellow-500/20 flex flex-col justify-around'>
+
+            <div className='w-2/5 bg-yellow-500/20 flex flex-col' >
                 <div className='text-3xl font-extrabold tracking-tight text-yellow-800'>
                     Meet Our Mentors.
                 </div>
-                <div className=''>
+                <div className='h-[80vh] w-full relative' ref={mentorRef}>
                     {
-                        mentors.map((mentor) => (
-                            <MentorCard key={mentor.name} name={mentor.name} designation={mentor.designation} experience={mentor.experience} />
+                        mentors.map((mentor, index) => (
+                            <MentorCard key={mentor.name} id={index} name={mentor.name} designation={mentor.designation} experience={mentor.experience} />
                         ))
                     }
                 </div>
             </div>
+
         </div>
     )
 }
